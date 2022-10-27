@@ -1,0 +1,58 @@
+@layout('layouts.app')
+
+@section('content')
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{{ post.image }}')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+              <h1>{{ post.title }}</h1>
+              <span class="meta">Posted by
+                <a href="#">{{ post.username }}</a>
+                on {{ post.createdAt.toDateString() }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            {{ post.content }}
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <hr>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <form action="/comments/store" method="POST" encType="multipart/form-data">
+
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Comment</label>
+            <textarea name="content" placeholder="Write your comment here ..." cols="30" rows="10" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="form-group my-4 text-center">
+          <button class="btn btn-primary">Add Comment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+@endsection 
+
+
+
+
+
