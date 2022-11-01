@@ -9,7 +9,9 @@ const Post = require('./database/models/Post');
 const fileUpload = require("express-fileupload");
 
 const createPostController = require('./controllers/createPost')
+const createCommentController = require('./controllers/createComment')
 const homePageController = require('./controllers/homePage')
+const storeCommentController = require('./controllers/storeComment')
 const storePostController = require('./controllers/storePost')
 const getPostController = require('./controllers/getPost')
 const createUserController = require("./controllers/createUser");
@@ -57,6 +59,8 @@ const redirectIfAuthenticated = require('./middleware/redirectIfAuthenticated')
 app.get("/", homePageController);
 app.get("/post/:id", getPostController);
 app.get("/posts/new", auth, createPostController);
+app.get("/comments/new", auth, createCommentController);
+app.post("/comments/store", auth, storeCommentController);
 app.post("/posts/store", auth, storePost, storePostController);
 app.get("/auth/login", redirectIfAuthenticated, loginController);
 app.post("/users/login", redirectIfAuthenticated, loginUserController);
